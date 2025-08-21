@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ФЕЙКОВЫЙ БАНК — Database</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="database">
+<header class="header">
+  <div class="container nav-wrap">
+    <nav class="nav">
+      <a class="nav__brand" href="index.html">ФЕЙКОВЫЙ БАНК</a>
+      <div class="nav__links">
+        <a href="index.html">Главная</a>
+        <a href="database.html" class="active">/database</a>
+        <a href="admin.html">/admin</a>
+      </div>
+      <div class="nav__meta">
+        <span id="balanceBadge" class="badge"></span>
+        <button id="logoutBtn" class="btn btn--ghost hidden">Выйти</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>База переводов</h2>
+    <p class="muted tiny">Учебные данные. Это <strong>ФЕЙКОВЫЙ</strong> банк.</p>
+
+    <div id="dbLocked" class="locked hidden">
+      <div class="lockBadge">🚫 Доступ только для администраторов</div>
+      <p class="muted">Войдите на странице <a href="admin.html">/admin</a>, затем вернитесь сюда.</p>
+    </div>
+
+    <div id="dbTableWrap" class="tableWrap">
+      <table class="table" id="dbTable">
+        <thead>
+          <tr><th>Время</th><th>Отправитель</th><th>Получатель</th><th>Сумма</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">© 2025 Учебный «ФЕЙКОВЫЙ БАНК»</div>
+    <div class="footer__links">
+      <a href="index.html">Главная</a>
+      <a href="database.html">/database</a>
+      <a href="admin.html">/admin</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
