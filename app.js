@@ -1,15 +1,12 @@
-/* === Учебный «ФЕЙКОВЫЙ БАНК» ===
-   Всё хранится в localStorage, никакого сервера.
-   Пароль админа проверяется по SHA-256, логин спрятан через base64.
-*/
+
 const STORE_KEY = 'fakebank_state_v1';
 
-// Немного спрятанные креды: AdminSat / admin
-const _a = 'QWRt', _b = 'aW5TYXQ='; // base64 частей логина
-const __LOGIN = atob(_a + _b);      // → "AdminSat"
+
+const _a = 'QWRt', _b = 'aW5TYXQ='; /
+const __LOGIN = atob(_a + _b);      //"AdminSat"
 const __PASS_SHA256 = (
   '8c69' + '76e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
-).toLowerCase(); // SHA-256("admin")
+).toLowerCase(); 
 
 // Хелперы
 const $ = sel => document.querySelector(sel);
@@ -29,7 +26,7 @@ function loadState(){
   if(raw){
     try { return JSON.parse(raw); } catch { /* ignore */ }
   }
-  // начальное состояние для нового пользователя
+  
   return {
     isAdmin:false,
     me:'You',
@@ -40,7 +37,7 @@ function loadState(){
 function saveState(s){ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
 
 function seedTx(){
-  // 20 учебных транзакций
+  
   const sample = [
     ['08:54','Maya Ali','Liam Chen',20],
     ['09:12','Noah Kim','Emma Stone',145],
@@ -63,11 +60,10 @@ function seedTx(){
     ['15:31','You','Elena V.',10],
     ['15:59','You','Savings',5],
   ];
-  // Преобразуем к единому формату
+  
   return sample.map(r => ({ ts:r[0], from:r[1], to:r[2], amount:Number(r[3]) }));
 }
 
-// Рендер общих элементов (хедер)
 function renderHeader(state){
   const badge = $('#balanceBadge');
   const logoutBtn = $('#logoutBtn');
@@ -82,14 +78,14 @@ function renderHeader(state){
   }
 }
 
-// Домашняя страница
+
 function initHome(){
   const state = loadState();
   renderHeader(state);
   $('#rolePill').textContent = 'role: ' + (state.isAdmin ? 'admin' : 'user');
   $('#balanceValue').textContent = fmt(state.balance);
 
-  // последние 7
+  
   const tbody = $('#recentTable tbody');
   tbody.innerHTML = '';
   state.tx.slice(-7).reverse().forEach(t => {
@@ -98,7 +94,7 @@ function initHome(){
     tbody.appendChild(tr);
   });
 
-  // формы
+ 
   const form = $('#transferForm');
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -117,7 +113,7 @@ function initHome(){
     location.reload();
   });
 
-  // Зачисление себе (только админ)
+  
   const creditBtn = $('#creditSelfBtn');
   if(creditBtn){
     creditBtn.classList.toggle('hidden', !state.isAdmin);
@@ -131,7 +127,7 @@ function initHome(){
   }
 }
 
-// Страница /admin
+// Страница
 function initAdmin(){
   const state = loadState();
   renderHeader(state);
@@ -177,7 +173,7 @@ function initAdmin(){
   }
 }
 
-// Страница /database
+
 function initDatabase(){
   const state = loadState();
   renderHeader(state);
@@ -198,7 +194,6 @@ function initDatabase(){
   });
 }
 
-// Bootstrap по странице
 (function(){
   const page = document.body.getAttribute('data-page');
   const s = loadState();
